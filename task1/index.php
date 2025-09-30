@@ -1,9 +1,9 @@
 <?php 
 $images = [
-    "https://static.insales-cdn.com/files/1/1158/25838726/original/8_ae6b6513214f1992ed752af830e37479.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9BcLF8OWCjFm7eg8_DeKu6RbsMFf1LVl2Nw&s",
+    "https://opis-cdn.tinkoffjournal.ru/mercury/in-out-baikal-animals.gg2hjt8bohcf..jpg",
+    "https://sev-in.ru/sites/default/files/styles/max_1300x1300/public/2024-09/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_2024-09-03_092154182.png?itok=zFOhQ_3h",
     "https://turclub-pik.ru/crop/1160/464/uploads/blog_img/covers/a215353424ef752983b11561614fcf2a.jpeg.webp",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-6_Wx6lX1p3r26ziDNv3Pb0cB-x7ouyFLkA&s"
+    "https://storage.yandexcloud.net/yac-wh-sb-prod-s3-media-03007/uploads/article/63/b334f7ab847b44267a6e4f6a0a98c330.webp"
 ];
 ?>
 <!DOCTYPE html>
