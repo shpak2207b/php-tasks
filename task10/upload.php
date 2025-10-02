@@ -10,7 +10,7 @@ if ($file['error'] !== UPLOAD_ERR_OK) {
     die("Ошибка загрузки файла!");
 }
 
-$allowed = ['image/jpeg', 'image/png', 'image/gif'];
+$allowed = ['image/jpeg', 'image/png'];
 if (!in_array($file['type'], $allowed)) {
     $_SESSION['error'] = "Неверный формат изображения";
     header('Location: /index.php');
