@@ -5,37 +5,46 @@ if(isset($_POST['number'])) {
     if(!isset($_SESSION['answer'])) {
         $_SESSION['answer'] = rand(1, 20);
         $_SESSION['remaining'] = 10;
+        $_SESSION['gameOver'] = false;
     }
-    var_dump($_SESSION);
+
 
     if(!empty($_POST['newGame'])){
         session_unset();
         header('Location: /index.php');
         exit();
     }
+        if (!empty($_SESSION['gameOver']) && $_SESSION['gameOver'] === true) {
+            $_SESSION['hint'] = "Игра окончена! Загаданное число: " . $_SESSION['answer'] . " Начать новую игру?";
+        }
+        else {
+
+        $user_answer = $_POST['number'];
+        if(empty($user_answer) || $user_answer > 20 || $user_answer < 1){
+            $_SESSION['hint'] = "Введите число от 1 до 20";
+            $_SESSION['remaining'] ++;
+        }
+        else if ($user_answer > $_SESSION['answer']){
+            $_SESSION['hint'] = "Загаданное число меньше";
+        }
+        else if  ($user_answer < $_SESSION['answer']){
+            $_SESSION['hint'] = "Загаданное число больше";
+        }
+
+        else {
+            $_SESSION['hint'] = "Вы угадали!, загаданное число: " . $_SESSION['answer'];
+            $_SESSION['gameOver'] = true;
+        }
 
 
-    $user_answer = $_POST['number'];
-    if(empty($user_answer) || $user_answer > 20 || $user_answer < 1){
-        $_SESSION['hint'] = "Введите число от 1 до 20";
-        $_SESSION['remaining'] ++;
-    }
-    else if ($user_answer > $_SESSION['answer']){
-        $_SESSION['hint'] = "Загаданное число меньше";
-    }
-    else if  ($user_answer < $_SESSION['answer']){
-        $_SESSION['hint'] = "Загаданное число больше";
-    }
+        if($_SESSION['remaining'] === 1) {
+            $_SESSION['gameOver'] = true;
+            $_SESSION['hint'] = "попытки закончились, загаданное число: " . $_SESSION['answer'];
+        }
 
-    else $_SESSION['hint'] = "Вы угадали!";
-    $_SESSION['remaining'] --;
-
-
-    if($_SESSION['remaining'] <= 0) {
-        $_SESSION['hint'] = "попытки закончились, загаданное число: " . $_SESSION['answer'];
+        $_SESSION['remaining'] --;
     }
 }
-
 ?>
 
 
@@ -56,7 +65,7 @@ if(isset($_POST['number'])) {
                 <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Компьютер загадал число от 0 до 20. Введите то число которое по вашему мнению он загадал. У вас есть 10 попыток.</p>
                 <div class="w-[350px]">
                     <div class="mx-auto p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                        Осталось попыток: <?php if(isset($_SESSION['remaining'])) {echo $_SESSION['remaining']; }  ?>
+                        Осталось попыток: <?php if(isset($_SESSION['remaining'])) { echo $_SESSION['remaining']; } else {echo 10; } ?>
                     </div>
                 </div>
                 <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Введите число</label>
